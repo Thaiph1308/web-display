@@ -1,0 +1,26 @@
+{
+  "name": "web-display",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thaiph1308/web-display.git"
+  },
+  "keywords": [
+    "web_display"
+  ],
+  "author": "Thai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Thaiph1308/web-display/issues"
+  },
+  "homepage": "https://github.com/Thaiph1308/web-display#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^4.1.0"
+  }
+}
