@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/Thaiph1308/web-display#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "xml": "^1.0.1",
+    "xml-js": "^1.6.11",
+    "xml2js": "^0.4.22"
   }
 }
