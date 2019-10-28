@@ -34,8 +34,7 @@ function read_entire_db(callback){
 function read_db(req, res){
     res.set('Content-Type', 'text/json')
     read_entire_db((data)=>{
-        res.json(data[1])
-        console.log(data[1])
+        res.json(data)
     })
 }
 const express = require('express')

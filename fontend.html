@@ -1,41 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <style>
-table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
-}
-th,td {
-  padding: 5px;
-}
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
 </style>
+
 <body>
 
-<table id="demo">
-<h1>The XMLHttpRequest Object</h1>
-<button type="button" onclick="loadDoc()">Change Content</button>
-</table>
+  <table id="demo"></table>
+  <h1>The XMLHttpRequest Object</h1>
+  <button type="button" onclick="loadDoc()">Change Content</button>
 
-<script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      myFunction(this.responseText)
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          myFunction(this.responseText)
+        }
+      };
+      xhttp.open("GET", "http://localhost:8080/", true);
+      xhttp.send();
     }
-  };
-  xhttp.open("GET", "http://localhost:8080/", true);
-  xhttp.send();
-}
-function myFunction(responseText) {
-  var i;
-  var jsondoc = JSON.parse(responseText);
-  var table="<tr><th>1</th><th>2</th></tr>";
-  var x = jsondoc["Timestamp_local"]
-  table += "<tr><td>" + x + "</td> <td>" + x + "</td></tr>";
-  document.getElementById("demo").innerHTML = table;
-}
-</script>
+    function myFunction(responseText) {
+      //ResponseText:String
+      var jsondoc = JSON.parse(responseText);
+      //jsondoc:Object [{..,...,}] 
+      // var table="<tr><th>STT</th><th>2</th><th>1</th><th>1</th><th>1</th><th>1</th></tr>";
+      // console.log("json doc is array?:" + Array.isArray(jsondoc))
+      // jsondoc is array, iterable:yes, 504 elements
+      var table = "<tr>"
+      for (k in jsondoc[1]) {
+        if (typeof (jsondoc[1][k]) == "object") {
+          console.log("QWERTY", jsondoc[1][k])
+          table += "<th><table><thead>"
+          table += "<tr><th>" + "meow meow" + "</th></tr>"
+          table += "<tr><th>" + "meow meow" + "</th></tr>"
+          table +="</thead></table></th>"
+        }
+        else {
+          table += "<th>" + k + "</th>"
+        }
+      }
+      table += "</tr>"
+      for (i = 0; i < jsondoc.length; i++) {
+        //console.log(Array.isArray(jsondoc[i]))
+        //console.log("json doc is array?:" + Array.isArray(jsondoc[1]))
+        //jsondoc[i] is array:No, it's a object
+        // console.log("Object.keys(jsondoc[i]).length:",Object.keys(jsondoc[i]).length)
+        // jsondoc[i].length = 4 // object jsondoc[i] co 4 keys (array)
+        // console.log("CONTENT" + jsondoc.content)
+        table += "<tr>"
+        for (var key in jsondoc[i]) {
+          if (jsondoc[i].hasOwnProperty(key)) {
+            if (typeof (jsondoc[i][key]) == "object") {
+              // console.log("YESS?S?S?S?S?SS?",jsondoc[i][key])
+              table += "<td><table><tr>"
+              for (var key_2 in jsondoc[i][key]) {
+                table += "<td>" + jsondoc[i][key][key_2] + "</td>"
+              }
+              // table+= "<tr><td>" + jsondoc[i][key]["power_factor"] + "</td></tr>"
+              table += "</tr></table></td>"
+            }
+            else // console.log(key + "->" + jsondoc[i][key])
+              table += "<td>" + jsondoc[i][key] + "</td>"
+          }
+        }
+        table += "</tr>"
+        // table += "<tr><td>" + jsondoc[i]["Payload"]["export_reactive_energy"] + "</td></tr>"
+      }
+      // var x = jsondoc["Payload"]
+      // table += "<tr  t ><td>" + x["export_reactive_energy"] + "</td> <td>" + x["import_active_energy"] + "</td> <td>" + x["export_active_energy"] + "</td> <td>" + x["total_active_energy:"] + "</td><td>" + x[4] + "</td> </tr>";
+      document.getElementById("demo").innerHTML = table;
+    }
+  </script>
 
 </body>
+
 </html>
