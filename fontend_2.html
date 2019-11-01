@@ -42,21 +42,19 @@
       for (k in jsondoc[1]) {
         if (typeof (jsondoc[1][k]) == "object") {
           console.log("QWERTY", jsondoc[1][k])
-          table += "<th colspan =" + Object.keys(jsondoc[1][k]).length + ">" + k + "</th>"
+          table += "<th><table><thead>"
+          table += "<tr><th>" + k + "</th></tr>"
+          table += "<tr>"
+          for(payload_data in jsondoc[1][k]){
+            table += "<th>" + payload_data + "</th>"            
+          }
+          table += "</tr>"
+          table +="</thead></table></th>"
         }
         else {
-          table += "<th rowspan = 2>" + k + "</th>"
+          table += "<th>" + k + "</th>"
         }
-      }      
-      table += "</tr>"
-      table += "<tr>"
-        for (k in jsondoc[1]) {
-        if (typeof (jsondoc[1][k]) == "object") {
-          for (payload_att in jsondoc[1][k]){
-            table += "<th>" + payload_att +"</th>"
-          }
-        }
-      }      
+      }
       table += "</tr>"
       for (i = 0; i < jsondoc.length; i++) {
         //console.log(Array.isArray(jsondoc[i]))
@@ -70,10 +68,12 @@
           if (jsondoc[i].hasOwnProperty(key)) {
             if (typeof (jsondoc[i][key]) == "object") {
               // console.log("YESS?S?S?S?S?SS?",jsondoc[i][key])
+              table += "<td><table><tr>"
               for (var key_2 in jsondoc[i][key]) {
                 table += "<td>" + jsondoc[i][key][key_2] + "</td>"
               }
               // table+= "<tr><td>" + jsondoc[i][key]["power_factor"] + "</td></tr>"
+              table += "</tr></table></td>"
             }
             else // console.log(key + "->" + jsondoc[i][key])
               table += "<td>" + jsondoc[i][key] + "</td>"
