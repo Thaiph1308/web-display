@@ -17,12 +17,11 @@
 <body>
   <div class="pagination">
     <a href="#">&laquo;</a>
-    <a href="javascript:void(0);" onclick=loadDoc(this,10)>1</a>
-    <a href="javascript:void(0);" onclick=loadDoc(this,10)>1</a>
-    <a href="javascript:void(0);" onclick=loadDoc(this,10)>2</a>
-    <a href="javascript:void(0);" onclick=loadDoc(this,10)>3</a>
+    <a href="javascript:void(0);" onclick=loadDoc(this,100)>1</a>
+    <a href="javascript:void(0);" onclick=loadDoc(this,400)>2</a>
+    <a href="javascript:void(0);" onclick=loadDoc(this,100)>3</a>
+    <a href="javascript:void(0);" onclick=loadDoc(this,100)>4</a>
     <a href="#">5</a>
-    <a href="#">6</a>
     <a href="#">&raquo;</a>
   </div>
   <table id="demo"></table>
@@ -80,12 +79,12 @@
             if (typeof (jsondoc[i][key]) == "object") {
               // console.log("YESS?S?S?S?S?SS?",jsondoc[i][key])
               for (var key_2 in jsondoc[i][key]) {
-                table += "<td align=left>" + jsondoc[i][key][key_2] + "</td>"
+                table += "<td align=center>" + jsondoc[i][key][key_2] + "</td>"
               }
               // table+= "<tr><td>" + jsondoc[i][key]["power_factor"] + "</td></tr>"
             }
             else // console.log(key + "->" + jsondoc[i][key])
-              table += "<td align=left>" + jsondoc[i][key] + "</td>"
+              table += "<td align=center>" + jsondoc[i][key] + "</td>"
           }
         }
         table += "</tr>"
