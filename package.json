@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Thaiph1308/web-display#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "nodemon": "^1.19.4",
     "sqlite3": "^4.1.0",
     "xml": "^1.0.1",
